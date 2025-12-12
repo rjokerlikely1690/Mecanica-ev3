@@ -1,0 +1,176 @@
+.calendario-admin {
+  margin-top: 2rem;
+}
+
+.calendario-header-admin {
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+}
+
+.calendario-navegacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calendario-mes {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+}
+
+.btn-nav-admin {
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.25rem 0.75rem;
+  text-decoration: none;
+}
+
+.btn-nav-admin:hover {
+  color: #8B4513;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.calendario-grid-admin {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.dia-semana-header {
+  text-align: center;
+  font-weight: 600;
+  color: #666;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.dia-calendario-admin {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  padding: 0.25rem;
+}
+
+.dia-calendario-admin:hover:not(.dia-pasado):not(.dia-otro-mes) {
+  background-color: #f5f5f5;
+  border-color: #8B4513;
+  transform: scale(1.05);
+}
+
+.dia-otro-mes {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.dia-pasado {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f9f9f9;
+}
+
+.dia-disponible {
+  background-color: white;
+}
+
+.dia-con-turnos {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+  cursor: pointer;
+}
+
+.dia-hoy {
+  background-color: #fff3cd;
+  border: 2px solid #8B4513;
+  font-weight: 600;
+}
+
+.numero-dia {
+  font-size: 0.9rem;
+}
+
+.badge-turnos-admin {
+  font-size: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.leyenda-calendario {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.leyenda-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.lista-turnos-modal {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.turno-item-modal {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  align-items: start;
+}
+
+.turno-item-modal:last-child {
+  border-bottom: none;
+}
+
+.turno-hora {
+  min-width: 60px;
+}
+
+.turno-info {
+  flex: 1;
+}
+
+.turno-info h6 {
+  margin: 0 0 0.25rem 0;
+  color: #1a1a1a;
+}
+
+.turno-estado {
+  min-width: 100px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .calendario-grid-admin {
+    gap: 0.25rem;
+  }
+  
+  .dia-calendario-admin {
+    font-size: 0.8rem;
+  }
+  
+  .leyenda-calendario {
+    gap: 1rem;
+  }
+}
+
