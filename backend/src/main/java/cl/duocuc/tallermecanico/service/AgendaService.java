@@ -33,10 +33,12 @@ public class AgendaService {
         return turnoRepository.save(turno);
     }
 
+    @SuppressWarnings("null")
     public Optional<Turno> obtenerPorId(String id) {
         return turnoRepository.findById(id);
     }
 
+    @SuppressWarnings("null")
     public Turno actualizarTurno(Turno turnoExistente, AgendaRequest request) {
         copiarDatos(turnoExistente, request);
         if (request.getConfirmado() != null) {
@@ -45,6 +47,7 @@ public class AgendaService {
         return turnoRepository.save(turnoExistente);
     }
 
+    @SuppressWarnings("null")
     public void eliminar(String id) {
         turnoRepository.deleteById(id);
     }

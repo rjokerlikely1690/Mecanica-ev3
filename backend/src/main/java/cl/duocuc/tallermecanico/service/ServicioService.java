@@ -22,6 +22,7 @@ public class ServicioService {
         return servicioRepository.findByActivoTrue();
     }
     
+    @SuppressWarnings("null")
     public Optional<Servicio> getServicioById(String id) {
         return servicioRepository.findById(id);
     }
@@ -35,6 +36,7 @@ public class ServicioService {
         return servicioRepository.save(servicio);
     }
     
+    @SuppressWarnings("null")
     public Servicio updateServicio(String id, ServicioRequest request) {
         Servicio servicio = servicioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Servicio no encontrado con id: " + id));
@@ -46,6 +48,7 @@ public class ServicioService {
         return servicioRepository.save(servicio);
     }
     
+    @SuppressWarnings("null")
     public void deleteServicio(String id) {
         Servicio servicio = servicioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Servicio no encontrado con id: " + id));

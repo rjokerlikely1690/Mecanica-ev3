@@ -17,6 +17,7 @@ import java.util.Optional;
 public class OrdenService {
 
     private final OrdenRepository ordenRepository;
+    @SuppressWarnings("unused")
     private final TurnoRepository turnoRepository;
     private final AgendaService agendaService;
 
@@ -64,10 +65,12 @@ public class OrdenService {
         return ordenRepository.findAll(sort);
     }
 
+    @SuppressWarnings("null")
     public Optional<Orden> obtenerPorId(String id) {
         return ordenRepository.findById(id);
     }
 
+    @SuppressWarnings("null")
     public void eliminar(String id) {
         ordenRepository.deleteById(id);
     }

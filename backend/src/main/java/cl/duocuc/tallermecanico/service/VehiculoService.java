@@ -45,10 +45,12 @@ public class VehiculoService {
         return vehiculoRepository.save(vehiculo);
     }
 
+    @SuppressWarnings("null")
     public Optional<Vehiculo> obtenerPorId(String id) {
         return vehiculoRepository.findById(id);
     }
 
+    @SuppressWarnings("null")
     public Vehiculo actualizar(String id, VehiculoRequest request) {
         Vehiculo vehiculo = vehiculoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Vehículo no encontrado"));
@@ -63,6 +65,7 @@ public class VehiculoService {
         return vehiculoRepository.save(vehiculo);
     }
 
+    @SuppressWarnings("null")
     public Vehiculo agregarHistorial(String id, HistorialEntradaRequest request) {
         Vehiculo vehiculo = vehiculoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Vehículo no encontrado"));
@@ -79,6 +82,7 @@ public class VehiculoService {
         return vehiculoRepository.save(vehiculo);
     }
 
+    @SuppressWarnings("null")
     public void eliminar(String id) {
         vehiculoRepository.deleteById(id);
     }

@@ -27,6 +27,7 @@ public class RepuestoService {
         return repuestoRepository.save(repuesto);
     }
 
+    @SuppressWarnings("null")
     public Repuesto actualizar(String id, RepuestoRequest request) {
         Repuesto repuesto = repuestoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Repuesto no encontrado"));
@@ -34,6 +35,7 @@ public class RepuestoService {
         return repuestoRepository.save(repuesto);
     }
 
+    @SuppressWarnings("null")
     public void eliminar(String id) {
         repuestoRepository.deleteById(id);
     }

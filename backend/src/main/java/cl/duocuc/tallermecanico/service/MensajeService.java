@@ -34,6 +34,7 @@ public class MensajeService {
         return mensajeInternoRepository.save(mensaje);
     }
 
+    @SuppressWarnings("null")
     public MensajeInterno actualizarDestacado(String id, boolean destacado) {
         MensajeInterno mensaje = mensajeInternoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Mensaje no encontrado"));
@@ -41,6 +42,7 @@ public class MensajeService {
         return mensajeInternoRepository.save(mensaje);
     }
 
+    @SuppressWarnings("null")
     public void eliminar(String id) {
         mensajeInternoRepository.deleteById(id);
     }
