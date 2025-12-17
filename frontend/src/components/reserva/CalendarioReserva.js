@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
+import { Container, Card, Button, Badge } from 'react-bootstrap';
 import { agendaService } from '../../services/apiService';
 import './CalendarioReserva.css';
 
@@ -17,6 +17,7 @@ const CalendarioReserva = ({ fechaSeleccionada, onFechaSeleccionada, onHoraSelec
     if (fechaSeleccionada) {
       generarHorasDisponibles(fechaSeleccionada);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fechaSeleccionada, turnos]);
 
   const loadTurnos = async () => {

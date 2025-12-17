@@ -23,6 +23,7 @@ const ReservaServicio = () => {
 
   useEffect(() => {
     loadServicio();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [servicioId]);
 
   const loadServicio = async () => {
