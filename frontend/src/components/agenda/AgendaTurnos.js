@@ -12,8 +12,10 @@ import {
 import { agendaService } from '../../services/apiService';
 import { useAuth } from '../../context/AuthContext';
 
+const todayStr = new Date().toISOString().split('T')[0];
+
 const initialForm = (user) => ({
-  fecha: '',
+  fecha: todayStr,
   hora: '',
   servicioSolicitado: '',
   notas: '',
@@ -27,6 +29,7 @@ const AgendaTurnos = () => {
   const [turnos, setTurnos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState(initialForm(user));
@@ -54,6 +57,7 @@ const AgendaTurnos = () => {
     setShowModal(false);
     setEditingId(null);
     setFormData(initialForm(user));
+    setFieldErrors({});
   };
 
   const handleOpenModal = (turno = null) => {
@@ -91,11 +95,25 @@ const AgendaTurnos = () => {
         await agendaService.create(payload);
       }
 
+      // success
+      setFieldErrors({});
+      setError('');
       handleCloseModal();
       loadTurnos();
     } catch (err) {
       console.error(err);
-      setError('No se pudo guardar el turno.');
+      // Try to surface server validation messages
+      const resp = err?.response?.data;
+      if (resp && typeof resp === 'object') {
+        // If it's a map of field -> message, join them
+        const messages = Object.values(resp).join('. ');
+        setFieldErrors(resp);
+        setError(messages || 'No se pudo guardar el turno.');
+      } else if (err?.message) {
+        setError(err.message);
+      } else {
+        setError('No se pudo guardar el turno.');
+      }
     }
   };
 
@@ -219,9 +237,14 @@ const AgendaTurnos = () => {
               <Form.Control
                 type="date"
                 value={formData.fecha}
+                min={todayStr}
                 onChange={(e) => setFormData({ ...formData, fecha: e.target.value })}
                 required
+                isInvalid={!!fieldErrors.fecha}
               />
+              <Form.Control.Feedback type="invalid">
+                {fieldErrors.fecha}
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Hora</Form.Label>
@@ -230,7 +253,11 @@ const AgendaTurnos = () => {
                 value={formData.hora}
                 onChange={(e) => setFormData({ ...formData, hora: e.target.value })}
                 required
+                isInvalid={!!fieldErrors.hora}
               />
+              <Form.Control.Feedback type="invalid">
+                {fieldErrors.hora}
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Servicio solicitado</Form.Label>
@@ -241,7 +268,11 @@ const AgendaTurnos = () => {
                   setFormData({ ...formData, servicioSolicitado: e.target.value })
                 }
                 required
+                isInvalid={!!fieldErrors.servicioSolicitado}
               />
+              <Form.Control.Feedback type="invalid">
+                {fieldErrors.servicioSolicitado}
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Notas</Form.Label>
@@ -263,7 +294,11 @@ const AgendaTurnos = () => {
                       setFormData({ ...formData, clienteNombre: e.target.value })
                     }
                     required
+                    isInvalid={!!fieldErrors.clienteNombre}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {fieldErrors.clienteNombre}
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>Correo cliente</Form.Label>
@@ -274,7 +309,11 @@ const AgendaTurnos = () => {
                       setFormData({ ...formData, clienteEmail: e.target.value })
                     }
                     required
+                        isInvalid={!!fieldErrors.clienteEmail}
                   />
+                      <Form.Control.Feedback type="invalid">
+                        {fieldErrors.clienteEmail}
+                      </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Check
                   className="mb-3"

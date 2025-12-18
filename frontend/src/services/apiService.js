@@ -176,6 +176,32 @@ export const ordenService = {
   },
 };
 
+export const usuarioService = {
+  getAll: async () => {
+    const response = await api.get('/usuarios');
+    return response.data;
+  },
+  getById: async (id) => {
+    const response = await api.get(`/usuarios/${id}`);
+    return response.data;
+  },
+  create: async (usuario) => {
+    const response = await api.post('/usuarios', usuario);
+    return response.data;
+  },
+  update: async (id, usuario) => {
+    const response = await api.put(`/usuarios/${id}`, usuario);
+    return response.data;
+  },
+  cambiarPassword: async (id, password) => {
+    const response = await api.put(`/usuarios/${id}/password`, { password });
+    return response.data;
+  },
+  remove: async (id) => {
+    await api.delete(`/usuarios/${id}`);
+  },
+};
+
 export default api;
 
 

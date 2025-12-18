@@ -6,6 +6,7 @@ import HistorialVehiculos from '../vehiculos/HistorialVehiculos';
 import CatalogoRepuestos from '../repuestos/CatalogoRepuestos';
 import TablonMensajes from '../mensajes/TablonMensajes';
 import GestionServicios from '../servicios/GestionServicios';
+import GestionUsuarios from '../usuarios/GestionUsuarios';
 import './DashboardAdmin.css';
 
 const DashboardAdmin = () => {
@@ -61,6 +62,20 @@ const DashboardAdmin = () => {
               </Card.Header>
               <Card.Body>
                 <GestionServicios />
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+
+        <Row className="mb-4">
+          <Col>
+            <Card id="section-usuarios" className="section-card">
+              <Card.Header className="section-header admin-header">
+                <h3>Gestión de Usuarios</h3>
+                <p className="section-subtitle">Administra usuarios, roles y permisos</p>
+              </Card.Header>
+              <Card.Body>
+                <GestionUsuarios />
               </Card.Body>
             </Card>
           </Col>
